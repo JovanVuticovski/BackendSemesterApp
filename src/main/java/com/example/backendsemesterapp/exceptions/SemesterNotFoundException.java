@@ -1,4 +1,4 @@
 package com.example.backendsemesterapp.exceptions;
 
-public class SemesterNotFoundException {
+public class SemesterNotFoundException extends Exception{
 }
