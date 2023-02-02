@@ -4,42 +4,25 @@ package com.example.backendsemesterapp.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+
+@Entity(name = "creator")
+@Builder
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "creator")
-@Table(name = "app_user")
-
-public class User implements UserDetails {
+public class User  {
 
     @Id
-    @SequenceGenerator(
-            name = "app_user_id_sequence",
-            sequenceName = "app_user_id_sequence",
-            // Incrementing id by 1 when adding new users to database
-            allocationSize = 1
-
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "app_user_id_sequence"
-    )
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    @Column(nullable = false)
-    private String firstname;
 
     @Column(nullable = false)
-    private String lastname;
+    private String username;
 
     @Column(nullable = false,unique = true)
     private String email;
@@ -54,38 +37,11 @@ public class User implements UserDetails {
     @JsonIgnoreProperties("creator")
     private Collection<Semester> semesters;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return email ;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public User(String username, String email, String password, Role role, Collection<Semester> semesters) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.semesters = semesters;
     }
 }
