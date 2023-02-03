@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SemesterRepository extends JpaRepository<Semester, Integer> {
 
-    Optional<Semester> getByFirstName(String title);
+    Optional<Semester> getByFirstName(String firstName);
 }
