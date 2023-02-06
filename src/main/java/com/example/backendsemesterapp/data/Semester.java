@@ -1,10 +1,6 @@
 package com.example.backendsemesterapp.data;
-
-
 import jakarta.persistence.*;
 import lombok.*;
-
-
 @Entity
 @Builder
 @Getter
@@ -15,11 +11,10 @@ public class Semester {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Integer semesterId;
 
     @Column(nullable = false)
     private String firstName;
-
     @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
@@ -30,8 +25,10 @@ public class Semester {
     @Column(nullable = false)
     private String endDate;
 
-    @Column(nullable = false)
-    private String contactInfo;
+    @Column(nullable = false, unique = true)
+    private Integer phoneNumber;
+    @Column()
+    private String extraContactInfo;
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

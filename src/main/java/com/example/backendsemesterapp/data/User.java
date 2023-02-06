@@ -1,12 +1,8 @@
 package com.example.backendsemesterapp.data;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Collection;
-
 
 @Entity(name = "creator")
 @Builder
@@ -18,7 +14,7 @@ public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Integer userId;
 
     @Column(nullable = false)
     private String username;
