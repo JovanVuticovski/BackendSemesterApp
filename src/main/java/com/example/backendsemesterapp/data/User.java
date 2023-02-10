@@ -1,18 +1,12 @@
 package com.example.backendsemesterapp.data;
-
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.util.Collection;
 import java.util.List;
-
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 @Getter
 @Setter
@@ -41,7 +35,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     // Hides password from displaying in body
     // @JsonProperty(access = READ_ONLY)
     private String password;
