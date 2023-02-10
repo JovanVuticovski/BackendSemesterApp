@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterUserDTO {
-    private String firstname;
-    private String lastname;
+public class LoginRequestDTO {
+    public String email;
 
-    private String email;
+    public String password;
 
-    private String password;
+
+
 }

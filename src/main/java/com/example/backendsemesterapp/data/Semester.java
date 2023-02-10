@@ -31,12 +31,12 @@ public class Semester {
     private String extraContactInfo;
 
     @ManyToOne
-    @JoinColumn(name = "creator_id")
-    private User creator;
+    @JoinColumn(name = "appuser_id")
+    private User appuser;
 
-    public Semester(String firstname, String lastName, User creator) {
+    public Semester(String firstname, String lastName, User appuser) {
         this.firstName = firstname;
         this.lastName = lastName;
-        this.creator = creator;
+        this.appuser = appuser;
     }
 }
