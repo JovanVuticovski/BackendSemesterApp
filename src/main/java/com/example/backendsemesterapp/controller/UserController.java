@@ -1,7 +1,7 @@
 package com.example.backendsemesterapp.controller;
 
 
-import com.example.backendsemesterapp.dtos.LoginRequestDTO;
+import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
 import com.example.backendsemesterapp.dtos.TokenResponseDTO;
 import com.example.backendsemesterapp.service.UserService;
@@ -27,7 +27,7 @@ public class UserController {
     }
     @PostMapping("/authenticate")
     public ResponseEntity<TokenResponseDTO> authenticate(
-            @RequestBody LoginRequestDTO request
+            @RequestBody LoginUserDTO request
     ) {
         return ResponseEntity.ok(userService.authenticate(request));
     }

@@ -48,9 +48,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)  // EnumType.String to define Roles by String(text) input
     private Role role; //Defining enum Class
 
-    @OneToMany(mappedBy = "appuser")
+    @OneToMany(mappedBy = "appuser") // One user can have many semesters
     @JsonIgnoreProperties("appuser")
-    private Collection<Semester> semesters;
+    private Collection<Semester> semesters; //User holds a list of his own semesters
 
 
     // Returns a list of Roles

@@ -18,7 +18,7 @@ public class Semester {
     @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
-    private String semesterType;
+    private String semesterType; // Make enum in future???
     @Column(nullable = false)
     private String startDate;
 
@@ -30,9 +30,9 @@ public class Semester {
     @Column()
     private String extraContactInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "appuser_id")
-    private User appuser;
+    @ManyToOne // Multiple Semesters can belong to same User
+    @JoinColumn(name = "appuser_id") // Join user column in database
+    private User appuser; // Inject User from  entity class(User)
 
     public Semester(String firstname, String lastName, User appuser) {
         this.firstName = firstname;

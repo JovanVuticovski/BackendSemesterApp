@@ -2,7 +2,7 @@ package com.example.backendsemesterapp.service;
 
 import com.example.backendsemesterapp.data.Role;
 import com.example.backendsemesterapp.data.User;
-import com.example.backendsemesterapp.dtos.LoginRequestDTO;
+import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
 import com.example.backendsemesterapp.dtos.TokenResponseDTO;
 import com.example.backendsemesterapp.jwtUtil.JwtTokenService;
@@ -45,7 +45,7 @@ public class UserService {
 
 
     // Login User
-    public TokenResponseDTO authenticate(LoginRequestDTO request) {
+    public TokenResponseDTO authenticate(LoginUserDTO request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
