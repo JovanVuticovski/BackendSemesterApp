@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+
+
 @Repository
 public interface SemesterRepository extends JpaRepository<Semester, Integer> {
 
+    Optional<Semester> findByPhoneNumber(String phoneNumber); // Find by phone number(Unique)
 
-    // Can be adjusted to get by id
-    Optional<Semester> getBySemesterId(Integer semesterId);
 }
