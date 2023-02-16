@@ -1,6 +1,7 @@
 package com.example.backendsemesterapp.controller;
 import com.example.backendsemesterapp.data.Semester;
 import com.example.backendsemesterapp.dtos.SemesterCreationDTO;
+import com.example.backendsemesterapp.exceptions.SemesterNotFoundException;
 import com.example.backendsemesterapp.service.SemesterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +35,19 @@ public class SemesterController {
                 semesterCreationDTO.getStartDate(),
                 semesterCreationDTO.getEndDate(),
                 semesterCreationDTO.getPhoneNumber());
+    }
 
 
 
+    //Delete Semester by id
+    // Fix bugg where id keeps incrementing after deleting semester
+
+    @DeleteMapping("/{id}")
+    public Semester deleteSemester(@PathVariable String id) // PathVariable accept only String format
+            throws SemesterNotFoundException
+    {
+
+        return semesterService.deleteSemester(Integer.valueOf((id))); // casting String value to Integer
     }
 
 }

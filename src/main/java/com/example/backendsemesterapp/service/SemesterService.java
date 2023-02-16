@@ -1,6 +1,7 @@
 package com.example.backendsemesterapp.service;
 
 import com.example.backendsemesterapp.data.Semester;
+import com.example.backendsemesterapp.exceptions.SemesterNotFoundException;
 import com.example.backendsemesterapp.repository.SemesterRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,4 +47,26 @@ public class SemesterService {
         return semesterRepository.save(semester);
     }
 
+
+
+
+    public Semester deleteSemester(Integer id)
+            throws SemesterNotFoundException
+
+    {
+        var optional = semesterRepository.findById(id);
+        if (optional.isEmpty()) {
+            log.info("Failed to delete semester since id '" + id + "' could not be found.");
+
+            throw new SemesterNotFoundException();
+
+        }
+
+        var semester= optional.get();
+
+        semesterRepository.delete(semester);
+        log.info("Successfully deleted product with id '" + semester.getSemesterId() + "'.");
+
+        return semester;
+    }
 }
