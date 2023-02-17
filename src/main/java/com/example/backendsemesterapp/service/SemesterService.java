@@ -21,6 +21,26 @@ public class SemesterService {
     }
 
 
+    public Semester getSemesterById(Integer id) //Get single semester
+            throws SemesterNotFoundException
+
+    {
+        var optional = semesterRepository.findById(id);
+        if (optional.isEmpty()) {
+            log.info("Failed to delete semester since id '" + id + "' could not be found.");
+
+            throw new SemesterNotFoundException();
+
+        }
+
+        var semester= optional.get();
+
+        semesterRepository.findById(id);
+        log.info("Successfully deleted product with id '" + semester.getSemesterId() + "'.");
+
+        return semester;
+    }
+
 
 
 

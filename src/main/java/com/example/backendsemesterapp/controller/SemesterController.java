@@ -23,6 +23,19 @@ public class SemesterController {
 
 
 
+    // Get single/one Semester
+    @GetMapping("/{id}")
+    public Semester getSemesterById(@PathVariable String id) // PathVariable accept only string values
+            throws SemesterNotFoundException
+    {
+
+        return semesterService.getSemesterById(Integer.valueOf((id))); // cast string value to integer
+    }
+
+
+
+
+
     // Create Semester
     @PostMapping("/create")
     public Semester createSemester(@RequestBody SemesterCreationDTO semesterCreationDTO)
