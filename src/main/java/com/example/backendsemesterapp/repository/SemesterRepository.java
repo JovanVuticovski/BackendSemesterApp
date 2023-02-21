@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface SemesterRepository extends JpaRepository<Semester, Integer> {
 
-    Optional<Semester> findByPhoneNumber(String phoneNumber); // Find by phone number(Unique)
+    Optional<Semester> findBySemesterId(Integer Id); // Find by semester id
 
 }
