@@ -1,6 +1,7 @@
 package com.example.backendsemesterapp.controller;
 
 
+import com.example.backendsemesterapp.data.User;
 import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
 import com.example.backendsemesterapp.dtos.TokenResponseDTO;
@@ -19,12 +20,23 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/register")
+
+    // Registering WITH RETURN OF JWT TOKEN
+
+   /* @PostMapping("/register")
     public ResponseEntity<TokenResponseDTO> register(
             @RequestBody RegisterUserDTO request
     ) {
         return ResponseEntity.ok(userService.register(request));
+    }*/
+
+    @PostMapping("/register")
+    public User register(
+            @RequestBody RegisterUserDTO request
+    ) {
+        return userService.register(request);
     }
+
     @PostMapping("/authenticate")
     public ResponseEntity<TokenResponseDTO> authenticate(
             @RequestBody LoginUserDTO request

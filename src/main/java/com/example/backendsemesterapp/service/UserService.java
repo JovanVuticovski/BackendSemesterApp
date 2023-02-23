@@ -21,6 +21,8 @@ public class UserService {
     private final JwtTokenService jwtService;
     private final AuthenticationManager authenticationManager;
 
+/*
+ // REGISTERING WITH JWT TOKEN  RETURN
 
     // Register User
     public TokenResponseDTO register(RegisterUserDTO request) {
@@ -41,6 +43,22 @@ public class UserService {
                 .build(); // Building response with Generated JWT token
     }
 
+*/
+
+    // Registering WITHOUT RETURN OF JWT TOKEN
+    public User register(RegisterUserDTO request) {
+        var user = User.builder() // Builder comes from annotation @Builder
+                .firstname(request.getFirstname())
+                .lastname(request.getLastname())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.USER)
+
+                .build();  // Registering User
+
+        userRepository.save(user); // Adding User to database
+        return user;
+    }
 
 
 
