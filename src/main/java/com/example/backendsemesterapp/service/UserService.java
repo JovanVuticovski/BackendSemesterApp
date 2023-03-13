@@ -1,14 +1,15 @@
 package com.example.backendsemesterapp.service;
 
 import com.example.backendsemesterapp.data.Role;
-import com.example.backendsemesterapp.data.Semester;
 import com.example.backendsemesterapp.data.User;
 import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
 import com.example.backendsemesterapp.dtos.TokenResponseDTO;
+import com.example.backendsemesterapp.exceptions.UserNotFoundException;
 import com.example.backendsemesterapp.jwtUtil.JwtTokenService;
 import com.example.backendsemesterapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,7 @@ import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j  // allow to log responses and exceptions
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -84,4 +86,26 @@ public class UserService {
     public Collection<User> getAll() {
         return userRepository.findAll();
     }
+
+
+    public User getUserById(Integer id) //Get single semester
+         throws UserNotFoundException
+
+    {
+      var optional = userRepository.findByUserId(id);
+        if (optional.isEmpty()) {
+            log.info("Failed to get User since id '" + id + "' could not be found.");
+
+            throw new UserNotFoundException();
+
+     }
+
+        var user= optional.get();
+
+       userRepository.findByUserId(id);
+        log.info("Successfully loaded user with id '" + user.getUserId() + "'.");
+
+       return user;
+}
+
 }

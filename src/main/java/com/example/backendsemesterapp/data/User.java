@@ -28,7 +28,7 @@ public class User implements UserDetails {
             generator = "app_user_id_sequence"
     )
 
-    private Integer id;
+    private Integer userId;
     @Column(nullable = false)
     private String firstname;
 

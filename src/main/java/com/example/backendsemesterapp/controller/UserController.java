@@ -1,11 +1,12 @@
 package com.example.backendsemesterapp.controller;
 
 
-import com.example.backendsemesterapp.data.Semester;
+
 import com.example.backendsemesterapp.data.User;
 import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
 import com.example.backendsemesterapp.dtos.TokenResponseDTO;
+import com.example.backendsemesterapp.exceptions.UserNotFoundException;
 import com.example.backendsemesterapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,18 @@ public class UserController {
         return ResponseEntity.ok(userService.authenticate(request));
     }
 
+    // Get all Users
     @GetMapping("/all")
     public Collection<User> getAll() {
         return userService.getAll();
     }
+
+    //Get single/one User
+   @GetMapping("/{id}")
+    public User getUserById(@PathVariable String id) // PathVariable accept only string values
+           throws UserNotFoundException{
+
+        return userService.getUserById(Integer.valueOf((id))); // cast string value to integer
+    }
+
 }
