@@ -1,6 +1,7 @@
 package com.example.backendsemesterapp.service;
 
 import com.example.backendsemesterapp.data.Role;
+import com.example.backendsemesterapp.data.Semester;
 import com.example.backendsemesterapp.data.User;
 import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
@@ -12,6 +13,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
@@ -76,5 +79,9 @@ public class UserService {
         return TokenResponseDTO.builder()
                 .token(jwtToken)
                 .build(); // Building response with Generated JWT token
+    }
+
+    public Collection<User> getAll() {
+        return userRepository.findAll();
     }
 }

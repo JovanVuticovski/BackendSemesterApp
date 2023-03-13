@@ -1,6 +1,7 @@
 package com.example.backendsemesterapp.controller;
 
 
+import com.example.backendsemesterapp.data.Semester;
 import com.example.backendsemesterapp.data.User;
 import com.example.backendsemesterapp.dtos.LoginUserDTO;
 import com.example.backendsemesterapp.dtos.RegisterUserDTO;
@@ -8,10 +9,9 @@ import com.example.backendsemesterapp.dtos.TokenResponseDTO;
 import com.example.backendsemesterapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/user")
@@ -44,4 +44,8 @@ public class UserController {
         return ResponseEntity.ok(userService.authenticate(request));
     }
 
+    @GetMapping("/all")
+    public Collection<User> getAll() {
+        return userService.getAll();
+    }
 }
